@@ -3,10 +3,10 @@ template_name=""
 if [ ! -n "$WERCKER_RAILS_DATABASE_YML_SERVICE" ]; then
   debug 'service option not specified, looking for services in the environment'
 
-  if [ ! -n "$WERCKER_MYSQL_HOST" ]; then
+  if [ -n "$WERCKER_MYSQL_HOST" ]; then
     info 'mysql service found'
     template_name="mysql"
-  elif [ ! -n "$WERCKER_POSTGRESQL_HOST" ]; then
+  elif [ -n "$WERCKER_POSTGRESQL_HOST" ]; then
     info 'postgresql service found'
     template_name="postgresql"
   fi
