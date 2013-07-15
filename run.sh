@@ -9,6 +9,8 @@ if [ ! -n "$WERCKER_RAILS_DATABASE_YML_SERVICE" ]; then
   elif [ -n "$WERCKER_POSTGRESQL_HOST" ]; then
     info 'postgresql service found'
     template_name="postgresql"
+  else
+    fail 'No compatible service defined in wercker.yml.\nSupported service are: mysql and postgresql.\n\nSee: http://devcenter.wercker.com/articles/services/'
   fi
 else
   debug 'service option specified, will load specified template'
