@@ -4,6 +4,10 @@ Generates a `config/database.yml` file with the environment information from you
 
 For this step you need to have a mysql or postgres. See the [services](http://devcenter.wercker.com/articles/services/) on wercker devcenter for more information about services.
 
+## Options
+
+* `service` This option is not required. If set, it will load the template from the specified service; otherwise, it will infer the service from the environment.
+
 ## Example
 
 The following `wercker.yml`:
