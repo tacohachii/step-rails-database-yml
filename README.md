@@ -4,15 +4,15 @@ Generates a `config/database.yml` file with the environment information from you
 
 For this step you need to have a mysql or postgres. See the [services](http://devcenter.wercker.com/articles/services/) on wercker devcenter for more information about services.
 
-## What's new
+# What's new
 
 * Adds environment variable `TEST_ENV_NUMBER` to the database name
 
-## Options
+# Options
 
 * `service` This option is not required. If set, it will load the template from the specified service; otherwise, it will infer the service from the environment.
 
-## Example
+# Example
 
 The following `wercker.yml`:
 
@@ -38,7 +38,12 @@ test:
   port: <%= ENV['WERCKER_POSTGRESQL_PORT'] %>
 ```
 
-## History
+# Changelog
 
-* `0.9.2` Adds environment variable `TEST_ENV_NUMBER` to the database name
-* `0.9.1` Initial version
+## 0.9.2
+
+- Adds environment variable `TEST_ENV_NUMBER` to the database name
+
+## 0.9.1
+
+- Initial version
