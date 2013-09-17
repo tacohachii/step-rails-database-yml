@@ -29,13 +29,13 @@ Will generate the following `config/database.yml`:
 
 ``` yaml
 test:
-  adapter: postgresql
-  encoding: sql_ascii
-  database: <%= ENV['WERCKER_POSTGRESQL_DATABASE'] %>
-  username: <%= ENV['WERCKER_POSTGRESQL_USERNAME'] %>
-  password: <%= ENV['WERCKER_POSTGRESQL_PASSWORD'] %>
-  host: <%= ENV['WERCKER_POSTGRESQL_HOST'] %>
-  port: <%= ENV['WERCKER_POSTGRESQL_PORT'] %>
+    adapter: postgresql
+    encoding: "utf8"
+    database: <%= ENV['WERCKER_POSTGRESQL_DATABASE'] %><%= ENV['TEST_ENV_NUMBER'] %>
+    username: <%= ENV['WERCKER_POSTGRESQL_USERNAME'] %>
+    password: <%= ENV['WERCKER_POSTGRESQL_PASSWORD'] %>
+    host: <%= ENV['WERCKER_POSTGRESQL_HOST'] %>
+    port: <%= ENV['WERCKER_POSTGRESQL_PORT'] %>
 ```
 
 # Changelog
