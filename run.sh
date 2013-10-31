@@ -23,7 +23,7 @@ template_filename="$WERCKER_STEP_ROOT/templates/$template_name.yml"
 if [ ! -f "$template_filename" ]; then
   fail "no template found with name $template_name"
 else
-  config_filename="$WERCKER_SOURCE_DIR/config/database.yml"
+  config_filename="$PWD/config/database.yml"
 
   if [ -f "$config_filename" ]; then
     warn 'config/database.yml already exists and will be overwritten'
