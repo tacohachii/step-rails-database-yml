@@ -6,11 +6,11 @@ For this step you need to have a mysql or postgres. See the [services](http://de
 
 # What's new
 
-* Adds environment variable `TEST_ENV_NUMBER` to the database name
+- Use `$PWD` instead of `$WERCKER_ROOT_DIR`
 
 # Options
 
-* `service` This option is not required. If set, it will load the template from the specified service; otherwise, it will infer the service from the environment.
+- `service` This option is not required. If set, it will load the template from the specified service; otherwise, it will infer the service from the environment.
 
 # Example
 
@@ -39,6 +39,10 @@ test:
 ```
 
 # Changelog
+
+## 0.9.3
+
+- Use `$PWD` instead of `$WERCKER_ROOT_DIR`
 
 ## 0.9.2
 
