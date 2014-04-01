@@ -1,5 +1,9 @@
 template_name=""
 
+if [ -z $WERCKER_RAILS_DATABASE_YML_POSTGRESQL_MIN_MESSAGE ]; then
+  export WERCKER_RAILS_DATABASE_YML_POSTGRESQL_MIN_MESSAGE="warning"
+fi
+
 if [ ! -n "$WERCKER_RAILS_DATABASE_YML_SERVICE" ]; then
   debug 'service option not specified, looking for services in the environment'
 
@@ -9,9 +13,6 @@ if [ ! -n "$WERCKER_RAILS_DATABASE_YML_SERVICE" ]; then
   elif [ -n "$WERCKER_POSTGRESQL_HOST" ]; then
     info 'postgresql service found'
 
-    if [ -z $WERCKER_RAILS_DATABASE_YML_POSTGRESQL_MIN_MESSAGE ]; then
-      export WERCKER_RAILS_DATABASE_YML_POSTGRESQL_MIN_MESSAGE="warning"
-    fi
 
     template_name="postgresql"
   else
