@@ -36,6 +36,7 @@ test:
     password: <%= ENV['WERCKER_POSTGRESQL_PASSWORD'] %>
     host: <%= ENV['WERCKER_POSTGRESQL_HOST'] %>
     port: <%= ENV['WERCKER_POSTGRESQL_PORT'] %>
+    min_messages: warning
 ```
 
 # Changelog
