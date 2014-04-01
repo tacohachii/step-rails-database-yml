@@ -8,6 +8,11 @@ if [ ! -n "$WERCKER_RAILS_DATABASE_YML_SERVICE" ]; then
     template_name="mysql"
   elif [ -n "$WERCKER_POSTGRESQL_HOST" ]; then
     info 'postgresql service found'
+
+    if [ -z $WERCKER_RAILS_DATABASE_YML_POSTGRESQL_MIN_MESSAGE ]; then
+      export WERCKER_RAILS_DATABASE_YML_POSTGRESQL_MIN_MESSAGE="warning"
+    fi
+
     template_name="postgresql"
   else
     fail 'No compatible service defined in wercker.yml.\nSupported service are: mysql and postgresql.\n\nSee: http://devcenter.wercker.com/articles/services/'
@@ -29,7 +34,11 @@ else
     warn 'config/database.yml already exists and will be overwritten'
   fi
 
-  cp -f "$template_filename" "$config_filename"
+  # cp -f "$template_filename" "$config_filename"
+  sed \
+    -e "s;\$WERCKER_RAILS_DATABASE_YML_POSTGRESQL_MIN_MESSAGE;$WERCKER_RAILS_DATABASE_YML_POSTGRESQL_MIN_MESSAGE;g" \
+    "$template_filename" > "$config_filename";
+
   info "created database.yml in config directory with content:"
   info "$(cat "$config_filename")"
 fi

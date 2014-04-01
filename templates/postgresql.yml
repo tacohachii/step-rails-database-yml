@@ -6,4 +6,4 @@ test:
     password: <%= ENV['WERCKER_POSTGRESQL_PASSWORD'] %>
     host: <%= ENV['WERCKER_POSTGRESQL_HOST'] %>
     port: <%= ENV['WERCKER_POSTGRESQL_PORT'] %>
-    min_messages: warning
+    min_messages: $WERCKER_RAILS_DATABASE_YML_POSTGRESQL_MIN_MESSAGE
