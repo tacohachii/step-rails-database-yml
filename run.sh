@@ -15,6 +15,9 @@ if [ ! -n "$WERCKER_RAILS_DATABASE_YML_SERVICE" ]; then
 
 
     template_name="postgresql"
+  elif [ -n "$WERCKER_POSTGRESQL_DATABASE" ]; then
+    info 'postgresql local service found'
+    template_name="postgresql-local"
   else
     fail 'No compatible service defined in wercker.yml.\nSupported service are: mysql and postgresql.\n\nSee: http://devcenter.wercker.com/articles/services/'
   fi
