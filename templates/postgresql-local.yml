@@ -1,5 +1,5 @@
 test:
-    adapter: postgresql
+    adapter: <%= ENV['WERCKER_POSTGRESQL_ADAPTER'] || 'postgresql' %>
     encoding: "utf8"
     database: <%= ENV['WERCKER_POSTGRESQL_DATABASE'] %><%= ENV['TEST_ENV_NUMBER'] %>
     username: <%= ENV['WERCKER_POSTGRESQL_USERNAME'] %>
