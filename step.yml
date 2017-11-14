@@ -1,0 +1,13 @@
+name: rails-database-yml
+version: 2.0.0
+summary: rails-database-yml step
+tags:
+- rails
+- database
+properties:
+- name: service
+  type: string
+  required: false
+- name: postgresql_min_message
+  type: string
+  required: false
