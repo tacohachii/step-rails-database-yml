@@ -11,4 +11,3 @@ properties:
 - name: postgresql_min_message
   type: string
   required: false
-

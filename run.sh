@@ -153,7 +153,9 @@ generate_mysql_docker() {
   tee "$location" << EOF
 test:
     adapter: mysql2
-    encoding: utf8
+    charset: utf8mb4
+    encoding: utf8mb4
+    collation: utf8_general_ci
     database: <%= ENV['MYSQL_ENV_MYSQL_DATABASE'] %><%= ENV['TEST_ENV_NUMBER'] %>
     username: <%= ENV['MYSQL_ENV_MYSQL_USER'] %>
     password: <%= ENV['MYSQL_ENV_MYSQL_PASSWORD'] %>
