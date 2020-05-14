@@ -155,7 +155,7 @@ test:
     adapter: mysql2
     charset: utf8mb4
     encoding: utf8mb4
-    collation: utf8_general_ci
+    collation: utf8mb4_unicode_ci
     database: <%= ENV['MYSQL_ENV_MYSQL_DATABASE'] %><%= ENV['TEST_ENV_NUMBER'] %>
     username: <%= ENV['MYSQL_ENV_MYSQL_USER'] %>
     password: <%= ENV['MYSQL_ENV_MYSQL_PASSWORD'] %>
