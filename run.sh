@@ -73,10 +73,10 @@ main() {
   fi
 
   # Check if there is a linked docker mysql_utf8mb4 instance
-  if [ -n "$MYSQL_UTF8MB4_PORT_3306_TCP_ADDR" ]; then
-    generate_mysql_utf8mb4_docker "$database_yml_path"
-    return
-  fi
+  # if [ -n "$MYSQL_UTF8MB4_PORT_3306_TCP_ADDR" ]; then
+  #   generate_mysql_utf8mb4_docker "$database_yml_path"
+  #   return
+  # fi
 
   fail 'Unable to auto detect service; please set "service" option'
 }
@@ -214,11 +214,11 @@ test:
     charset: utf8mb4
     encoding: utf8mb4
     collation: utf8mb4_unicode_ci
-    database: <%= ENV['MYSQL_UTF8MB4_ENV_MYSQL_DATABASE'] %><%= ENV['TEST_ENV_NUMBER'] %>
-    username: <%= ENV['MYSQL_UTF8MB4_ENV_MYSQL_USER'] %>
-    password: <%= ENV['MYSQL_UTF8MB4_ENV_MYSQL_PASSWORD'] %>
-    host: <%= ENV['MYSQL_UTF8MB4_PORT_3306_TCP_ADDR'] %>
-    port: <%= ENV['MYSQL_UTF8MB4_PORT_3306_TCP_PORT'] %>
+    database: <%= ENV['MYSQL_ENV_MYSQL_DATABASE'] %><%= ENV['TEST_ENV_NUMBER'] %>
+    username: <%= ENV['MYSQL_ENV_MYSQL_USER'] %>
+    password: <%= ENV['MYSQL_ENV_MYSQL_PASSWORD'] %>
+    host: <%= ENV['MYSQL_PORT_3306_TCP_ADDR'] %>
+    port: <%= ENV['MYSQL_PORT_3306_TCP_PORT'] %>
 EOF
 }
 
