@@ -30,6 +30,9 @@ main() {
       mysql-docker)
         generate_mysql_docker "$database_yml_path"
         ;;
+      tacohachi-mysql)
+        generate_tacohachi_mysql "$database_yml_path"
+        ;;
       *)
         fail 'Invalid service; currently supported: postgresql, postgresql-legacy, postgresql-docker, postgresql-local, mysql, mysql-legacy, mysql-docker'
         ;;
@@ -153,9 +156,7 @@ generate_mysql_docker() {
   tee "$location" << EOF
 test:
     adapter: mysql2
-    charset: utf8mb4
-    encoding: utf8mb4
-    collation: utf8mb4_unicode_ci
+    encoding: utf8
     database: <%= ENV['MYSQL_ENV_MYSQL_DATABASE'] %><%= ENV['TEST_ENV_NUMBER'] %>
     username: <%= ENV['MYSQL_ENV_MYSQL_USER'] %>
     password: <%= ENV['MYSQL_ENV_MYSQL_PASSWORD'] %>
@@ -179,6 +180,41 @@ test:
     password: <%= ENV['WERCKER_MYSQL_PASSWORD'] %>
     host: <%= ENV['WERCKER_MYSQL_HOST'] %>
     port: <%= ENV['WERCKER_MYSQL_PORT'] %>
+EOF
+}
+
+
+# generate_tacohachi_mysql $location
+# generate a database.yml based on docker links
+generate_tacohachi_mysql() {
+  local location="${1:?'location is required'}"
+
+  info printenv
+
+  if [ -z "$MYSQL_ENV_MYSQL_DATABASE" ]; then
+    warn "MYSQL_DATABASE env var for the mysql service is not set"
+  fi
+
+  if [ -z "$MYSQL_ENV_MYSQL_USER" ]; then
+    warn "MYSQL_USER env var for the mysql service is not set"
+  fi
+
+  if [ -z "$MYSQL_ENV_MYSQL_PASSWORD" ]; then
+    warn "MYSQL_PASSWORD env var for the mysql service is not set"
+  fi
+
+  info "Generating mysql docker template"
+  tee "$location" << EOF
+test:
+    adapter: mysql2
+    charset: utf8mb4
+    encoding: utf8mb4
+    collation: utf8mb4_unicode_ci
+    database: <%= ENV['MYSQL_ENV_MYSQL_DATABASE'] %><%= ENV['TEST_ENV_NUMBER'] %>
+    username: <%= ENV['MYSQL_ENV_MYSQL_USER'] %>
+    password: <%= ENV['MYSQL_ENV_MYSQL_PASSWORD'] %>
+    host: <%= ENV['MYSQL_PORT_3306_TCP_ADDR'] %>
+    port: <%= ENV['MYSQL_PORT_3306_TCP_PORT'] %>
 EOF
 }
 
