@@ -140,6 +140,8 @@ EOF
 generate_mysql_docker() {
   local location="${1:?'location is required'}"
 
+  printenv
+
   if [ -z "$MYSQL_ENV_MYSQL_DATABASE" ]; then
     warn "MYSQL_DATABASE env var for the mysql service is not set"
   fi
