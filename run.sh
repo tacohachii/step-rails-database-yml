@@ -72,6 +72,12 @@ main() {
     return
   fi
 
+  # Check if there is a linked docker mysql_utf8mb4 instance
+  if [ -n "$MYSQL_UTF8MB4_PORT_3306_TCP_ADDR" ]; then
+    generate_mysql_utf8mb4_docker "$database_yml_path"
+    return
+  fi
+
   fail 'Unable to auto detect service; please set "service" option'
 }
 
@@ -139,8 +145,6 @@ EOF
 # generate a database.yml based on docker links
 generate_mysql_docker() {
   local location="${1:?'location is required'}"
-
-  printenv
 
   if [ -z "$MYSQL_ENV_MYSQL_DATABASE" ]; then
     warn "MYSQL_DATABASE env var for the mysql service is not set"
@@ -213,8 +217,8 @@ test:
     database: <%= ENV['MYSQL_UTF8MB4_ENV_MYSQL_DATABASE'] %><%= ENV['TEST_ENV_NUMBER'] %>
     username: <%= ENV['MYSQL_UTF8MB4_ENV_MYSQL_USER'] %>
     password: <%= ENV['MYSQL_UTF8MB4_ENV_MYSQL_PASSWORD'] %>
-    host: <%= ENV['MYSQL_PORT_3306_TCP_ADDR'] %>
-    port: <%= ENV['MYSQL_PORT_3306_TCP_PORT'] %>
+    host: <%= ENV['MYSQL_UTF8MB4_PORT_3306_TCP_ADDR'] %>
+    port: <%= ENV['MYSQL_UTF8MB4_PORT_3306_TCP_PORT'] %>
 EOF
 }
 
