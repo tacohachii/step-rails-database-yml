@@ -66,6 +66,10 @@ test:
 
 # Changelog
 
+## 2.1.0
+
+- [Fork] Add support for utf8mb4 in mysql
+
 ## 1.1.0
 
 - Add support for the ewok stack.

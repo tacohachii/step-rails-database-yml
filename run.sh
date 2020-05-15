@@ -207,7 +207,7 @@ generate_mysql_utf8mb4_docker() {
     warn "MYSQL_PASSWORD env var for the mysql service is not set"
   fi
 
-  info "Generating mysql docker template"
+  info "Generating mysql utf8mb4 template"
   tee "$location" << EOF
 test:
     adapter: mysql2
