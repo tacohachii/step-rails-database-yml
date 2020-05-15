@@ -30,8 +30,8 @@ main() {
       mysql-docker)
         generate_mysql_docker "$database_yml_path"
         ;;
-      tacohachi-mysql)
-        generate_tacohachi_mysql "$database_yml_path"
+      mysql-utf8mb4)
+        generate_mysql_utf8mb4_docker "$database_yml_path"
         ;;
       *)
         fail 'Invalid service; currently supported: postgresql, postgresql-legacy, postgresql-docker, postgresql-local, mysql, mysql-legacy, mysql-docker'
@@ -184,22 +184,20 @@ EOF
 }
 
 
-# generate_tacohachi_mysql $location
+# generate_mysql_utf8mb4_docker $location
 # generate a database.yml based on docker links
-generate_tacohachi_mysql() {
+generate_mysql_utf8mb4_docker() {
   local location="${1:?'location is required'}"
 
-  printenv
-
-  if [ -z "$MYSQL_ENV_MYSQL_DATABASE" ]; then
+  if [ -z "$MYSQL_UTF8MB4_ENV_MYSQL_DATABASE" ]; then
     warn "MYSQL_DATABASE env var for the mysql service is not set"
   fi
 
-  if [ -z "$MYSQL_ENV_MYSQL_USER" ]; then
+  if [ -z "$MYSQL_UTF8MB4_ENV_MYSQL_USER" ]; then
     warn "MYSQL_USER env var for the mysql service is not set"
   fi
 
-  if [ -z "$MYSQL_ENV_MYSQL_PASSWORD" ]; then
+  if [ -z "$MYSQL_UTF8MB4_ENV_MYSQL_PASSWORD" ]; then
     warn "MYSQL_PASSWORD env var for the mysql service is not set"
   fi
 
@@ -210,9 +208,9 @@ test:
     charset: utf8mb4
     encoding: utf8mb4
     collation: utf8mb4_unicode_ci
-    database: <%= ENV['MYSQL_ENV_MYSQL_DATABASE'] %><%= ENV['TEST_ENV_NUMBER'] %>
-    username: <%= ENV['MYSQL_ENV_MYSQL_USER'] %>
-    password: <%= ENV['MYSQL_ENV_MYSQL_PASSWORD'] %>
+    database: <%= ENV['MYSQL_UTF8MB4_ENV_MYSQL_DATABASE'] %><%= ENV['TEST_ENV_NUMBER'] %>
+    username: <%= ENV['MYSQL_UTF8MB4_ENV_MYSQL_USER'] %>
+    password: <%= ENV['MYSQL_UTF8MB4_ENV_MYSQL_PASSWORD'] %>
     host: <%= ENV['MYSQL_PORT_3306_TCP_ADDR'] %>
     port: <%= ENV['MYSQL_PORT_3306_TCP_PORT'] %>
 EOF
