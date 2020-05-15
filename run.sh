@@ -189,7 +189,7 @@ EOF
 generate_tacohachi_mysql() {
   local location="${1:?'location is required'}"
 
-  info printenv
+  printenv
 
   if [ -z "$MYSQL_ENV_MYSQL_DATABASE" ]; then
     warn "MYSQL_DATABASE env var for the mysql service is not set"
