@@ -1,3 +1,5 @@
+[![wercker status](https://app.wercker.com/status/f15419c6a37976ddac89e8ec07fc1ef7/s/master "wercker status")](https://app.wercker.com/project/byKey/f15419c6a37976ddac89e8ec07fc1ef7)
+
 # Rails database yml
 
 Generates a `config/database.yml` file with the environment information from
